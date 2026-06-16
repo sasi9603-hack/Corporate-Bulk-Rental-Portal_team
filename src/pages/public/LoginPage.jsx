@@ -37,7 +37,7 @@ export default function LoginPage() {
         navigate('/redirect')
       }, 100)
     } catch (err) {
-      setError('Invalid email or password. Please check your credentials.')
+      setError(err.message || 'Invalid email or password. Please check your credentials.')
     } finally {
       setLoading(false)
     }
