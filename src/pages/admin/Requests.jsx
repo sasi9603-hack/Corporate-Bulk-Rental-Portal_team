@@ -83,78 +83,123 @@ export default function Requests() {
         </div>
       </div>
 
-      {/* Table */}
+      {/* Table & Cards */}
       <div className="card overflow-hidden">
-        <div className="overflow-x-auto">
-          {loading ? (
-            <LoadingSpinner text="Loading requests..." />
-          ) : filtered.length === 0 ? (
-            <div className="text-center py-16 text-slate-400">
-              <Search size={32} className="mx-auto mb-3 opacity-30" />
-              <p className="font-medium">No requests found</p>
-              <p className="text-sm mt-1">Try adjusting your search or filters</p>
-            </div>
-          ) : (
-            <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
-                <tr>
-                  <th className="table-th">Request ID</th>
-                  <th className="table-th">Company</th>
-                  <th className="table-th">Event</th>
-                  <th className="table-th">Request Date</th>
-                  <th className="table-th">Status</th>
-                  <th className="table-th">Amount</th>
-                  <th className="table-th">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {filtered.map(req => (
-                  <tr key={req.id} className="table-row">
-                    <td className="table-td">
-                      <code className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">
-                        {req.id.slice(0, 8)}...
-                      </code>
-                    </td>
-                    <td className="table-td">
-                      <div>
-                        <p className="font-semibold text-slate-900">{req.companies?.company_name}</p>
-                        <p className="text-xs text-slate-400">{req.companies?.email}</p>
-                      </div>
-                    </td>
-                    <td className="table-td">
-                      <div>
-                        <p className="font-medium">{req.event_name}</p>
-                        <p className="text-xs text-slate-400">
-                          {req.start_date} → {req.end_date}
-                        </p>
-                      </div>
-                    </td>
-                    <td className="table-td text-slate-500 text-xs">
-                      {format(new Date(req.created_at), 'dd MMM yyyy')}
-                    </td>
-                    <td className="table-td">
-                      <StatusBadge status={req.status} />
-                    </td>
-                    <td className="table-td font-semibold text-slate-800">
-                      {req.quotations?.[0]?.total_amount
-                        ? `₹${Number(req.quotations[0].total_amount).toLocaleString('en-IN')}`
-                        : <span className="text-slate-300 font-normal">—</span>}
-                    </td>
-                    <td className="table-td">
-                      <Link
-                        to={`/admin/requests/${req.id}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
-                                   hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors"
-                      >
-                        <Eye size={13} /> View
-                      </Link>
-                    </td>
+        {loading ? (
+          <LoadingSpinner text="Loading requests..." />
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-16 text-slate-400">
+            <Search size={32} className="mx-auto mb-3 opacity-30" />
+            <p className="font-medium">No requests found</p>
+            <p className="text-sm mt-1">Try adjusting your search or filters</p>
+          </div>
+        ) : (
+          <>
+            {/* Desktop Table (Hidden on Mobile) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th className="table-th">Request ID</th>
+                    <th className="table-th">Company</th>
+                    <th className="table-th">Event</th>
+                    <th className="table-th">Request Date</th>
+                    <th className="table-th">Status</th>
+                    <th className="table-th">Amount</th>
+                    <th className="table-th">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {filtered.map(req => (
+                    <tr key={req.id} className="table-row">
+                      <td className="table-td">
+                        <code className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">
+                          {req.id.slice(0, 8)}...
+                        </code>
+                      </td>
+                      <td className="table-td">
+                        <div>
+                          <p className="font-semibold text-slate-900">{req.companies?.company_name}</p>
+                          <p className="text-xs text-slate-400">{req.companies?.email}</p>
+                        </div>
+                      </td>
+                      <td className="table-td">
+                        <div>
+                          <p className="font-medium">{req.event_name}</p>
+                          <p className="text-xs text-slate-400">
+                            {req.start_date} → {req.end_date}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="table-td text-slate-500 text-xs">
+                        {format(new Date(req.created_at), 'dd MMM yyyy')}
+                      </td>
+                      <td className="table-td">
+                        <StatusBadge status={req.status} />
+                      </td>
+                      <td className="table-td font-semibold text-slate-800">
+                        {req.quotations?.[0]?.total_amount
+                          ? `₹${Number(req.quotations[0].total_amount).toLocaleString('en-IN')}`
+                          : <span className="text-slate-300 font-normal">—</span>}
+                      </td>
+                      <td className="table-td">
+                        <Link
+                          to={`/admin/requests/${req.id}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
+                                     hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                          <Eye size={13} /> View
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Grid Card System (Hidden on Desktop) */}
+            <div className="grid grid-cols-1 gap-4 md:hidden p-4 bg-slate-50/50">
+              {filtered.map(req => (
+                <div key={req.id} className="card p-4 hover:shadow-md transition-shadow relative">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
+                      {req.id.slice(0, 8)}...
+                    </span>
+                    <StatusBadge status={req.status} />
+                  </div>
+                  
+                  <h3 className="font-bold text-slate-900 text-sm">{req.companies?.company_name}</h3>
+                  <p className="text-xs text-slate-500 mb-2">{req.companies?.email}</p>
+                  
+                  <div className="border-t border-slate-100 my-2 pt-2">
+                    <p className="text-xs font-medium text-slate-700">Event: {req.event_name}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      Dates: {req.start_date} → {req.end_date}
+                    </p>
+                  </div>
+                  
+                  <div className="flex justify-between items-center mt-3 pt-2 border-t border-slate-100">
+                    <div>
+                      <p className="text-xs text-slate-400">Total Amount</p>
+                      <p className="text-sm font-bold text-slate-800">
+                        {req.quotations?.[0]?.total_amount
+                          ? `₹${Number(req.quotations[0].total_amount).toLocaleString('en-IN')}`
+                          : '—'}
+                      </p>
+                    </div>
+                    <Link
+                      to={`/admin/requests/${req.id}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
+                                 hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors"
+                    >
+                      <Eye size={13} /> View
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Footer count */}
         {filtered.length > 0 && (
