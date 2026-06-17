@@ -13,11 +13,11 @@ An Internship Reference Document project built in collaboration with **One Point
 ---
 
 ## Team Structure & Members
-* **Student 1 (Frontend)**: `[Insert Student 1 Name]`
+* **Student 1 (Frontend)**: `Praharsha`
   * *Responsibilities*: Corporate enquiry form, bulk device quantity grid, event/training date selector, delivery location fields, quotation request summary, approval status page, and corporate admin dashboard.
-* **Student 2 (Backend)**: `[Insert Student 2 Name]`
+* **Student 2 (Backend)**: `Prem Sai`
   * *Responsibilities*: Bulk rental request APIs, quantity availability validation, corporate account linkage, quotation status workflow, delivery slot checks, invoice handoff, and request reports.
-* **Student 3 (Testing & Deployment)**: `[Insert Student 3 Name]`
+* **Student 3 (Testing & Deployment)**: `V.Sasidhar Reddy`
   * *Responsibilities*: Rental workflow testing, return checklist testing, KYC/agreement validation, bulk rental testing, logistics conflict testing, maintenance tracker testing, B2B account testing, ROI calculation testing, AI output testing, troubleshooting testing, photo inspection testing, API testing, GitHub management, and deployment validation.
 
 ---
@@ -25,7 +25,6 @@ An Internship Reference Document project built in collaboration with **One Point
 ## Technology Stack
 
 | Layer | Technology | Role in This Project |
-| :--- | :--- | :--- |
 | **Frontend** | React, Vite, Tailwind CSS, Lucide React | Corporate enquiry form, bulk device quantity grid, date selectors, quote requests, status pages, and the admin dashboard. |
 | **Backend & Auth** | Node.js (Express) / Supabase Auth | User registration/login, session management, secure backend endpoints, and role guards. |
 | **Database** | PostgreSQL (via Supabase) | Stores customers, devices, rental bookings, return dates, device condition, KYC logs, deposits, and status histories. |
