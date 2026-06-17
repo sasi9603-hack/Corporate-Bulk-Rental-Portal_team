@@ -30,7 +30,7 @@ From a quality perspective, the project focuses on the following five testing ob
 
 The backend `/api/hello` route was tested to confirm that the local Express server starts correctly and handles requests.
 
-### Test Case: Backend Connectivity Check
+### Test Case: Backend Connectivity Check (GET)
 * **Date & Time**: 2026-06-17T09:39:00Z (UTC)
 * **Endpoint URL**: `http://localhost:5000/api/hello`
 * **HTTP Method**: `GET`
@@ -52,3 +52,37 @@ The backend `/api/hello` route was tested to confirm that the local Express serv
 
 ### Test Result: **PASSED**
 *The server is fully operational and CORS configurations are correctly allowing cross-origin requests.*
+
+---
+
+### Test Case: Personalized Hello Check (POST)
+* **Date & Time**: 2026-06-17T09:49:57Z (UTC)
+* **Endpoint URL**: `http://localhost:5000/api/hello`
+* **HTTP Method**: `POST`
+* **Test Client**: PowerShell `Invoke-RestMethod` / Postman API Client
+* **Expected Status**: `200 OK`
+* **Actual Status**: `200 OK`
+
+### Request Header/Body:
+* **Headers**: `Content-Type: application/json`
+* **Body**:
+```json
+{
+    "name": "Sasidhar"
+}
+```
+
+### Response Payload:
+```json
+{
+    "status": "success",
+    "message": "Hello, Sasidhar! Welcome to the Corporate Bulk Rental Portal Backend.",
+    "receivedData": {
+        "name": "Sasidhar"
+    },
+    "timestamp": "2026-06-17T09:49:57.772Z"
+}
+```
+
+### Test Result: **PASSED**
+*The server successfully parsed the JSON request body, processed the custom name parameter, and responded with a personalized hello message.*
