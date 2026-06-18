@@ -74,4 +74,4 @@ All files have been verified as successfully compiled and are located at:
 3. **Test Cases**: [TestCases.docx](file:///c:/Users/sasid/OneDrive/Apps/open/docs/TestCases.docx)
 4. **Completion Report**: [Day4_CompletionReport.md](file:///c:/Users/sasid/OneDrive/Apps/open/docs/Day4_CompletionReport.md)
 5. **Main Readme**: [README.md](file:///c:/Users/sasid/OneDrive/Apps/open/README.md)
-6. **Raw QA CSV Logs**: Mapped under [testing/](file:///c:/Users/sasid/OneDrive/Apps/open/testing)
+6. **Raw QA CSV Logs**: Mapped under [tests/](file:///c:/Users/sasid/OneDrive/Apps/open/tests)

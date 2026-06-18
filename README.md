@@ -82,7 +82,7 @@ Our testing strategy encompasses multiple testing phases to guarantee functional
 ### 4. Defect Tracking Process
 A centralized registry tracks all QA-identified bugs:
 1. **Identification**: Testing runs detect anomalous behavior (e.g. invalid email acceptance).
-2. **Logging**: Issue recorded in `testing/bug_reports.md` (and exported as `bug_reports.csv`) detailing title, description, severity, status (Open/Resolved), and steps to reproduce.
+2. **Logging**: Issue recorded in `tests/bug_reports.md` (and exported as `tests/bug_reports.csv`) detailing title, description, severity, status (Open/Resolved), and steps to reproduce.
 3. **Prioritization**: Priority levels (Critical, High, Medium, Low) assigned depending on operational blockages.
 
 ### 5. Deployment Validation Process

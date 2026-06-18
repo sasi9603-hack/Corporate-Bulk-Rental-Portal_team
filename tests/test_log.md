@@ -29,16 +29,16 @@ From a quality perspective, the project focuses on the following five testing ob
 All raw data and test logs have been separated into dedicated sheets for modularity and single-source integrity:
 
 ### 📋 Test Cases Log
-* **Sheet Path**: **[test_cases.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/test_cases.csv)**
+* **Sheet Path**: **[test_cases.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/test_cases.csv)**
 * **Overview**: Records all 35 test cases (TC-001 to TC-035) covering Website accessibility, Navigation, Wizard forms, APIs, Mobile/Tablet layouts, Route Guards, and Role-Based Access.
 
 ### 🐛 Bug Reports Log
-* **Detailed Logs**: **[bug_reports.md](file:///c:/Users/sasid/OneDrive/Apps/open/testing/bug_reports.md)**
-* **Sheet Path**: **[bug_reports.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/bug_reports.csv)**
+* **Detailed Logs**: **[bug_reports.md](file:///c:/Users/sasid/OneDrive/Apps/open/tests/bug_reports.md)**
+* **Sheet Path**: **[bug_reports.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/bug_reports.csv)**
 * **Overview**: Details the 6 active bugs (BUG-001, BUG-006 to BUG-010) with steps to reproduce and severity rankings.
 
 ### 🌐 API Testing Log
-* **Sheet Path**: **[api_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/api_testing.csv)**
+* **Sheet Path**: **[api_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/api_testing.csv)**
 * **Observations**:
   * Backend API is not accepting requests.
   * Authentication services are failing.
@@ -46,9 +46,9 @@ All raw data and test logs have been separated into dedicated sheets for modular
   * Deployment environment variables may be missing or invalid.
 
 ### 🔐 Authentication Testing Log
-* **Sheet Path**: **[authentication_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/authentication_testing.csv)**
+* **Sheet Path**: **[authentication_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/authentication_testing.csv)**
 * **Overview**: Logs login page, registration page, password validation, registration submission, and Google OAuth login results.
 
 ### 🚀 Deployment Validation Log
-* **Sheet Path**: **[deployment_validation.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/deployment_validation.csv)**
+* **Sheet Path**: **[deployment_validation.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/deployment_validation.csv)**
 * **Overview**: Logs Frontend UI components vs Backend server communication status.
