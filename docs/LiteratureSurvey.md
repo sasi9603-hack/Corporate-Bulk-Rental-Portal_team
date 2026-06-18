@@ -46,7 +46,7 @@ This document outlines the literature survey conducted for the Corporate Bulk Re
   * Recommends maintaining a minimum of 80% test pass rates before production releases.
   * Stresses the importance of edge cases (e.g. negative quantities, special characters, past dates) and mobile/tablet responsive testing.
 * **Relevance to Project**:
-  * Establishes the target metrics for our QA suite (current pass rate is 80.0% with 30-35 test cases).
+  * Establishes the target metrics for our QA suite (current pass rate is 80.0% with 38 test cases).
   * Directs the structuring of our Test Cases Registry (`test_cases.csv`) and Bug Report trackers.
 
 ### 5. Deployment Validation Strategies for Cloud-Based B2B Web Portals

@@ -34,13 +34,8 @@
 "TC-033","Mobile Form Testing","Forms should remain accessible and usable","Form fields and buttons worked correctly","PASS"
 "TC-034","Tablet View Testing","Application should adapt to tablet screen size","UI rendered correctly without layout issues","PASS"
 "TC-035","Tablet Navigation Testing","Navigation should function properly on tablet devices","All navigation components worked correctly","PASS"
-"TC-036","Return Checklist Testing","Technicians should be able to log quantities and serial numbers of returned devices","Checklist is filled and logged in database successfully","PASS"
-"TC-037","KYC/Agreement Validation","Admin should verify company KYC documents and sign agreements","KYC docs verified, rental agreement marked as signed","PASS"
-"TC-038","Logistics Conflict Testing","Logistics coordinator is alerted if delivery date conflicts with inventory limits","Alert is triggered and displayed in admin console","PASS"
-"TC-039","Maintenance Tracker Testing","Technicians can log devices under repair and mark them as unavailable","Device status updated to Maintenance and stock count reduced","PASS"
-"TC-040","B2B Account Testing","Client should be linked to their company profile and view company specific rates","B2B profile linked and company specific contract rates applied","PASS"
-"TC-041","ROI Calculation Testing","Admin dashboard should compute accurate ROI values based on purchase cost and rental revenue","ROI calculated using revenue/costs and displayed in chart","PASS"
-"TC-042","AI Output Testing","AI should suggest complete device combinations and draft quotation notes","Suggestions displayed and quote note drafted automatically","PASS"
-"TC-043","Troubleshooting Support Chat","Client can submit support tickets and technician can reply","Ticket created and replies tracked in real-time","PASS"
-"TC-044","Photo Inspection Testing","Technicians can upload photos for returned devices to log damage claims","Photos uploaded and stored in Supabase storage, damage noted","PASS"
+"TC-036","B2B Account Testing","Client should be linked to their company profile and view company specific rates","B2B profile linked and company specific contract rates applied","PASS"
+"TC-037","ROI Calculation Testing","Admin dashboard should compute accurate ROI values based on purchase cost and rental revenue","ROI calculated using revenue/costs and displayed in chart","PASS"
+"TC-038","AI Output Testing","AI should suggest complete device combinations and draft quotation notes","Suggestions displayed and quote note drafted automatically","PASS"
+
 

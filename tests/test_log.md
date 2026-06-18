@@ -30,7 +30,7 @@ All raw data and test logs have been separated into dedicated sheets for modular
 
 ### 📋 Test Cases Log
 * **Sheet Path**: **[test_cases.csv](file:///c:/Users/sasid/OneDrive/Apps/open/tests/test_cases.csv)**
-* **Overview**: Records all 35 test cases (TC-001 to TC-035) covering Website accessibility, Navigation, Wizard forms, APIs, Mobile/Tablet layouts, Route Guards, and Role-Based Access.
+* **Overview**: Records all 38 test cases (TC-001 to TC-038) covering Website accessibility, Navigation, Wizard forms, APIs, Mobile/Tablet layouts, Route Guards, Role-Based Access, and Student 3 custom verification (B2B Accounts, ROI calculations, and AI outputs).
 
 ### 🐛 Bug Reports Log
 * **Detailed Logs**: **[bug_reports.md](file:///c:/Users/sasid/OneDrive/Apps/open/tests/bug_reports.md)**
