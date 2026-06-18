@@ -1,6 +1,6 @@
-# Corporate Bulk Rental Portal — Test Log
+# Corporate Bulk Rental Portal — Test Log & Summary Index
 
-This file contains the testing objectives, tool installation records, and backend endpoint test logs.
+This log is the executive index for the QA test suite, linking to the specialized spreadsheets and bug reports.
 
 ---
 
@@ -8,81 +8,47 @@ This file contains the testing objectives, tool installation records, and backen
 
 From a quality perspective, the project focuses on the following five testing objectives:
 
-1. **Functional Completeness & API Correctness**: Validate that all API routes (Express backend endpoints and Supabase database requests) process requests successfully, return correct status codes, and handle boundary limits (e.g., negative device quantities) gracefully.
-2. **Cross-Device UI Responsiveness**: Test that the layout switches dynamically and correctly between the mobile card grid layout and the laptop/desktop tabular layout, ensuring visual excellence and zero content overlap.
-3. **Role-Based Authorization & Guarding**: Verify that the `AdminGuard` and `ClientGuard` routes properly block unauthorized requests, redirecting unauthenticated users to `/login` and routing logged-in users to their correct dashboards based on role profiles.
-4. **Data Integrity & Schema Mapping**: Ensure database records are correctly created and linked between the `companies`, `rental_requests`, and `request_items` tables in PostgreSQL, preventing orphan records or database integrity constraint failures.
-5. **PDF Export & Quotation Accuracy**: Test the rule-based quotation calculation logic and PDF export engine (`jsPDF` + `html2canvas`) to guarantee that generated quotation files contain accurate prices, tax details, and match One Point Solutions' branding.
+1. **Functional Completeness & API Correctness**: Validate backend API and Supabase endpoints.
+2. **Cross-Device UI Responsiveness**: Verify layout correctness on mobile and desktop.
+3. **Role-Based Authorization & Guarding**: Verify authorization guards block unauthorized access.
+4. **Data Integrity & Schema Mapping**: Prevent PostgreSQL integrity constraint failures.
+5. **PDF Export & Quotation Accuracy**: Ensure correctness of rule-based pricing and exports.
 
 ---
 
 ## 2. API Testing Tool Installation
 
 * **Tool Installed**: Postman Desktop Client (Windows 64-bit)
-* **Installation Method**: Windows Package Manager (`winget`)
-* **Package ID**: `Postman.Postman`
 * **Version**: `12.15.4`
 * **Status**: Successfully Installed
 
 ---
 
-## 3. Backend API Route Test Log
+## 3. QA Documentation Index
 
-The backend `/api/hello` route was tested to confirm that the local Express server starts correctly and handles requests.
+All raw data and test logs have been separated into dedicated sheets for modularity and single-source integrity:
 
-### Test Case: Backend Connectivity Check (GET)
-* **Date & Time**: 2026-06-17T09:39:00Z (UTC)
-* **Endpoint URL**: `http://localhost:5000/api/hello`
-* **HTTP Method**: `GET`
-* **Test Client**: PowerShell `Invoke-RestMethod` / Postman API Client
-* **Expected Status**: `200 OK`
-* **Actual Status**: `200 OK`
+### 📋 Test Cases Log
+* **Sheet Path**: **[test_cases.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/test_cases.csv)**
+* **Overview**: Records all 35 test cases (TC-001 to TC-035) covering Website accessibility, Navigation, Wizard forms, APIs, Mobile/Tablet layouts, Route Guards, and Role-Based Access.
 
-### Request Header/Body:
-*No request body required (GET request)*
+### 🐛 Bug Reports Log
+* **Detailed Logs**: **[bug_reports.md](file:///c:/Users/sasid/OneDrive/Apps/open/testing/bug_reports.md)**
+* **Sheet Path**: **[bug_reports.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/bug_reports.csv)**
+* **Overview**: Details the 6 active bugs (BUG-001, BUG-006 to BUG-010) with steps to reproduce and severity rankings.
 
-### Response Payload:
-```json
-{
-    "status": "success",
-    "message": "Hello from Corporate Bulk Rental Portal Backend!",
-    "timestamp": "2026-06-17T09:39:00.462Z"
-}
-```
+### 🌐 API Testing Log
+* **Sheet Path**: **[api_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/api_testing.csv)**
+* **Observations**:
+  * Backend API is not accepting requests.
+  * Authentication services are failing.
+  * Supabase integration appears misconfigured.
+  * Deployment environment variables may be missing or invalid.
 
-### Test Result: **PASSED**
-*The server is fully operational and CORS configurations are correctly allowing cross-origin requests.*
+### 🔐 Authentication Testing Log
+* **Sheet Path**: **[authentication_testing.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/authentication_testing.csv)**
+* **Overview**: Logs login page, registration page, password validation, registration submission, and Google OAuth login results.
 
----
-
-### Test Case: Personalized Hello Check (POST)
-* **Date & Time**: 2026-06-17T09:49:57Z (UTC)
-* **Endpoint URL**: `http://localhost:5000/api/hello`
-* **HTTP Method**: `POST`
-* **Test Client**: PowerShell `Invoke-RestMethod` / Postman API Client
-* **Expected Status**: `200 OK`
-* **Actual Status**: `200 OK`
-
-### Request Header/Body:
-* **Headers**: `Content-Type: application/json`
-* **Body**:
-```json
-{
-    "name": "Sasidhar"
-}
-```
-
-### Response Payload:
-```json
-{
-    "status": "success",
-    "message": "Hello, Sasidhar! Welcome to the Corporate Bulk Rental Portal Backend.",
-    "receivedData": {
-        "name": "Sasidhar"
-    },
-    "timestamp": "2026-06-17T09:49:57.772Z"
-}
-```
-
-### Test Result: **PASSED**
-*The server successfully parsed the JSON request body, processed the custom name parameter, and responded with a personalized hello message.*
+### 🚀 Deployment Validation Log
+* **Sheet Path**: **[deployment_validation.csv](file:///c:/Users/sasid/OneDrive/Apps/open/testing/deployment_validation.csv)**
+* **Overview**: Logs Frontend UI components vs Backend server communication status.

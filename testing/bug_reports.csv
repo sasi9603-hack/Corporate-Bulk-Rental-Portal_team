@@ -1,0 +1,12 @@
+"Bug ID","Title","Severity","Steps to Reproduce","Expected Result","Actual Result","Status"
+"BUG-001","Invalid Email Accepted in Quote Request Form","Medium","1. Open Quote Request Form.
+2. Enter invalid email (ghhjj).
+3. Continue.","Validation message displayed.","User proceeds to next step.","Open"
+"BUG-006","API Request Returns 401 Unauthorized","High","1. Fill rental request form.
+2. Submit request.","Request stored successfully.","API returns 401 Unauthorized (POST request to Supabase API failed).","Open"
+"BUG-007","Resource Not Found (404)","Low","1. Access requested resource.","Resource loads successfully.","Resource returns HTTP 404.","Open"
+"BUG-008","Login Page Displays Invalid API Key","High","1. Open Login page.","Login page should load without backend errors.","\"Invalid API Key\" displayed.","Open"
+"BUG-009","Registration Fails Due to Invalid API Key","High","1. Fill registration details.
+2. Submit registration.","User account created.","Registration blocked with Invalid API Key error.","Open"
+"BUG-010","Google OAuth Redirect Failure","High","1. Click Google Sign-In button.
+2. Authenticate.","User redirected back to application after Google login.","Redirected to 404 NOT_FOUND page.","Open"

@@ -1,0 +1,6 @@
+"Feature","Result"
+"Login Page Access","PASS"
+"Registration Page Access","PASS"
+"Password Validation","PASS"
+"Registration Submission","FAIL"
+"Google OAuth Login","FAIL"

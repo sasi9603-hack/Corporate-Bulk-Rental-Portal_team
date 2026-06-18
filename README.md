@@ -58,3 +58,34 @@ The **Corporate Bulk Rental Portal** is a working prototype that automates the e
 * **Review 1 (06 June 2026)**: Company intro, project title, problem statement, objectives, abstract.
 * **Review 2 (19-20 June 2026)**: Literature survey, system analysis, architecture, database design.
 * **Review 3 (Final Present)**: Full deployed prototype, presentation, demo video.
+
+---
+
+## Testing & Deployment (Student 3 - V. Sasidhar Reddy)
+
+### 1. Testing Strategy
+Our testing strategy encompasses multiple testing phases to guarantee functional, visual, database, and security coverage:
+* **Manual Exploratory Testing**: Validating client-to-admin workflows, step navigation of form wizard, and visual alignment across responsive breakpoints.
+* **API Testing & Schema Validation**: Checking backend endpoint integrity, RLS permissions validation, and ensuring database tables block invalid inserts.
+* **Authentication & Guard Verification**: Testing route protection (redirecting unauthorized guests) and admin role restriction.
+
+### 2. Test Environment
+* **Frontend**: React and Vite running on a local development server (`http://localhost:5173`).
+* **Backend**: Node.js and Express server communicating with Supabase services.
+* **Database**: Supabase PostgreSQL database instances running with customized Row-Level Security (RLS) policies.
+
+### 3. Tools Used
+* **Postman Desktop Client**: Version `12.15.4` (Windows 64-bit) used for batch execution of API validation test scenarios.
+* **Browser DevTools**: Google Chrome and Microsoft Edge DevTools used for responsive viewport inspection, console trace reviews, and network request monitoring.
+* **GitHub**: Repositories, commits, and branch tracking logs.
+
+### 4. Defect Tracking Process
+A centralized registry tracks all QA-identified bugs:
+1. **Identification**: Testing runs detect anomalous behavior (e.g. invalid email acceptance).
+2. **Logging**: Issue recorded in `testing/bug_reports.md` (and exported as `bug_reports.csv`) detailing title, description, severity, status (Open/Resolved), and steps to reproduce.
+3. **Prioritization**: Priority levels (Critical, High, Medium, Low) assigned depending on operational blockages.
+
+### 5. Deployment Validation Process
+* **Pre-Deployment Checklist**: Verify local server builds without errors, run tests locally, audit RLS rules.
+* **Post-Deployment Validation**: Execute a checklist comparing local and remote API URL variables, verify client dashboard KPI counters, test authentications, and run end-to-end enquiries to confirm full database write success.
+

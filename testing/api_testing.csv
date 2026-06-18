@@ -1,0 +1,5 @@
+"API Area","Method","Result"
+"Rental Request Submission","POST","Failed"
+"Supabase Companies API","POST","401 Unauthorized"
+"Authentication API","POST","Invalid API Key"
+"Registration API","POST","Invalid API Key"
