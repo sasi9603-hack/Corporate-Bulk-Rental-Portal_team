@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Study Guide & Interview Prep — Corporate Bulk Rental Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+    :root {
+      --bg-gradient: #022c22;
+      --card-bg: #0f3f35;
+      --card-border: rgba(16, 185, 129, 0.15);
+      --primary: #10b981;
+      --primary-glow: rgba(16, 185, 129, 0.15);
+      --accent: #10b981;
+      --text-main: #f0fdf4;
+      --text-muted: #86efac;
+      --success: #34d399;
+      --warning: #fcd34d;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #818cf8, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Card styling */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+    }
+
+    /* Highlight Callouts */
+    .callout {
+      border-left: 4px solid var(--primary);
+      background: rgba(99, 102, 241, 0.08);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+    }
+
+    .callout.important {
+      border-left-color: var(--warning);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .callout.success {
+      border-left-color: var(--success);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #0b0f19;
+      padding: 1.25rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin: 1.5rem 0;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+
+    /* Interview Q&A styling */
+    .qa-section {
+      margin-top: 2rem;
+    }
+
+    .qa-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.5rem 0;
+    }
+
+    .qa-item:last-child {
+      border-bottom: none;
+    }
+
+    .question {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .question-prefix {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .answer {
+      color: #cbd5e1;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Architecture Diagram styling */
+    .diagram {
+      background: #090d16;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #a5b4fc;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin: 1.5rem 0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* Prompt Box */
+    .prompt-box {
+      background: #020617;
+      border: 1px dashed var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    .prompt-box pre {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .prompt-box code {
+      color: #38bdf8;
+      font-size: 0.95rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #ddd;
+        color: #000;
+        box-shadow: none;
+        page-break-inside: avoid;
+        backdrop-filter: none;
+      }
+      h2, header h1, .question, strong {
+        color: #000 !important;
+        -webkit-text-fill-color: initial !important;
+        background: none !important;
+      }
+      p, li, .answer {
+        color: #222 !important;
+      }
+      .badge {
+        border-color: #000;
+        color: #000;
+        background: none;
+      }
+      .callout {
+        background: #f9f9f9;
+        border-left-color: #000;
+      }
+      pre, .diagram, .prompt-box {
+        background: #f5f5f5;
+        color: #000;
+        border-color: #ccc;
+      }
+      code {
+        color: #000;
+      }
+      .copy-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">Backend Engineering</div>
+      <h1>Review 2 Study Guide</h1>
+      <p>Corporate Bulk Rental Portal — System Analysis, Database Design & Security</p>
+    </header>
+
+    <!-- Tech Stack -->
+    <div class="card">
+      <h2>1. Architecture & Technology Stack</h2>
+      <p>Our project uses a modern <strong>Serverless / BaaS (Backend-as-a-Service)</strong> architecture. Unlike standard applications that require hosting and writing a separate backend server (e.g. Express/NodeJS or Spring Boot), we leverage Supabase to handle routing, authentication, API generation, and database interactions.</p>
+      
+      <div class="diagram">
+[ React Client (Vite + Tailwind) ]
+                |
+                | Secure REST/Websocket Queries (JWT Auth Headers)
+                ▼
+[ Supabase BaaS Gateway (Auto-generated APIs) ]
+      ├── JWT Authentication & Verification
+      ├── PostgreSQL Database Management
+      └── RLS (Row-Level Security) Query Filter
+                |
+                ▼
+[ PostgreSQL Database (7 Relational Tables) ]</div>
+
+      <div class="callout">
+        <div class="callout-title">💡 Why BaaS & Supabase?</div>
+        <ul>
+          <li><strong>Instant APIs:</strong> Supabase exposes endpoints directly for every SQL table we create, removing the need to write redundant controller routes.</li>
+          <li><strong>Database-level Security:</strong> Standard servers use middleware. We write policies directly inside PostgreSQL using Row Level Security (RLS).</li>
+          <li><strong>PostgreSQL Engine:</strong> Provides relational schemas, constraints, triggers, and transactions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DB Schema -->
+    <div class="card">
+      <h2>2. Database Design & Schema</h2>
+      <p>Our database consists of 7 tables structured in a relational database layout to support the bulk booking process.</p>
+      
+      <ul>
+        <li><strong>profiles:</strong> Extends Supabase auth details. Structured as: <code>id (UUID, PK references auth.users)</code>, <code>email (text)</code>, <code>full_name (text)</code>, <code>role (text check constraints: 'admin', 'client')</code>.</li>
+        <li><strong>companies:</strong> Captures B2B details. Columns: <code>id (UUID, PK)</code>, <code>company_name</code>, <code>contact_person</code>, <code>email</code>, <code>phone</code>, <code>address</code>.</li>
+        <li><strong>devices:</strong> The rental inventory. Columns: <code>id (UUID, PK)</code>, <code>name</code>, <code>category (check: Laptop/Desktop/Monitor/Projector/Printer)</code>, <code>available_quantity</code>, <code>daily_price</code>.</li>
+        <li><strong>rental_requests:</strong> Bookings submitted by clients. Columns: <code>id (UUID, PK)</code>, <code>company_id (FK -> companies)</code>, <code>user_id (FK -> auth.users)</code>, <code>event_name</code>, <code>start_date</code>, <code>end_date</code>, <code>delivery_location</code>, <code>status (Pending, Under Review, Quoted, Approved, Allocated, Delivered, Completed, Rejected)</code>.</li>
+        <li><strong>request_items:</strong> Junction table mapping requests to requested devices. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK)</code>, <code>device_id (FK)</code>, <code>quantity (integer)</code>.</li>
+        <li><strong>quotations:</strong> Billing details per request. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK, Unique)</code>, <code>total_amount (numeric)</code>, <code>quotation_notes (text)</code>, <code>status (check: Draft/Sent/Approved/Rejected)</code>.</li>
+        <li><strong>status_history:</strong> State-machine log auditing transitions. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK)</code>, <code>old_status</code>, <code>new_status</code>, <code>changed_by (FK)</code>, <code>admin_note</code>, <code>changed_at</code>.</li>
+      </ul>
+
+      <div class="callout important">
+        <div class="callout-title">⚠️ Integrity & Constraints</div>
+        <p>We use <strong>Foreign Key Constraints</strong> with <code>ON DELETE CASCADE</code> to prevent orphan rows. For example, deleting a rental request cascades deletions down to its child records in <code>request_items</code> and <code>quotations</code> automatically.</p>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="card">
+      <h2>3. Row Level Security (RLS) & Security Policies</h2>
+      <p>Every table in our database has Row Level Security enabled. RLS ensures that unless an explicit policy grants access, queries will return empty rows.</p>
+      
+      <p>Supabase verifies client requests via <strong>JWT (JSON Web Tokens)</strong>. The database extracts the client ID using the function <code>auth.uid()</code> and checks the access policies.</p>
+
+      <pre><code>-- Example RLS Policy
+CREATE POLICY "Clients can view own requests" ON rental_requests
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Custom Authorization Checker
+CREATE OR REPLACE FUNCTION is_admin()
+RETURNS BOOLEAN LANGUAGE sql SECURITY DEFINER AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE id = auth.uid() AND role = 'admin'
+  );
+$$;</code></pre>
+    </div>
+
+    <!-- Interview Q&As -->
+    <div class="card">
+      <h2>4. Mock Interview Q&As (15 Questions)</h2>
+      <div class="qa-section">
+        
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q1:</span> Which database did you use, and why?</div>
+          <div class="answer">We used <strong>PostgreSQL</strong> hosted on Supabase. PostgreSQL is an enterprise-grade relational database. It is ideal for transactional business portals because it enforces strict schemas, referential integrity (foreign keys), and secure transactions, preventing issues like orphan rows or double bookings.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q2:</span> How does your frontend talk to the database without a custom server (like Node/Express)?</div>
+          <div class="answer">We use Supabase as our Backend-as-a-Service (BaaS). Supabase automatically generates RESTful APIs directly from our PostgreSQL database tables. Our React client imports the <code>@supabase/supabase-js</code> SDK and queries the database directly via HTTPS calls, eliminating server-side routing boilerplate.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q3:</span> Explain how Row Level Security (RLS) protects client data.</div>
+          <div class="answer">RLS is a PostgreSQL security feature. Every time a client queries a table, the database checks defined RLS policies. It verifies the client’s identity using the JWT sent in the authorization header and extracts their user ID using <code>auth.uid()</code>. The policy restricts the query to return only rows matching that ID, e.g., <code>auth.uid() = user_id</code>.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q4:</span> How does client user registration work? How is their profile created?</div>
+          <div class="answer">When a user signs up via Supabase Auth, their email and password are saved in Supabase’s internal <code>auth.users</code> table. We set up a PostgreSQL <strong>Database Trigger</strong> (<code>on_auth_user_created</code>) that automatically executes a function. This function inserts a matching row into our public <code>profiles</code> table, mapping their metadata and assigning a default role of <code>'client'</code>.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q5:</span> How do you handle role authorization (Admins vs. Clients)?</div>
+          <div class="answer">We use Role-Based Access Control (RBAC). The <code>profiles</code> table has a <code>role</code> column (<code>'admin'</code> or <code>'client'</code>). On the database level, RLS policies use a custom function <code>is_admin()</code> to check this role and restrict modifications (like adding inventory or quotations). On the frontend, React uses route guards to check the role in <code>AuthContext</code> and redirect clients away from admin pages.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q6:</span> How is the rental request quotation calculated and exported?</div>
+          <div class="answer">The quotation total is calculated dynamically: <code>daily_device_rate * quantity * event_duration_days</code>. Once approved, the admin inputs this total, and we use the client-side library <strong>jsPDF</strong> to generate a formatted PDF invoice displaying order details and company branding, downloading it directly via the browser.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q7:</span> What happens to related records when a request is deleted?</div>
+          <div class="answer">We use foreign key constraints configured with <code>ON DELETE CASCADE</code>. For example, <code>request_items</code> and <code>quotations</code> have foreign keys referencing the <code>rental_requests</code> table. If an admin deletes a request, PostgreSQL automatically removes all associated items and quotes, protecting data consistency.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q8:</span> How does do you audit status changes for the rental request workflow?</div>
+          <div class="answer">We created a <code>status_history</code> table that functions as an audit log. Every time a request status updates (e.g., from <code>Pending</code> to <code>Under Review</code> to <code>Quoted</code>), the update trigger or transaction inserts a row documenting the old state, new state, user ID of the modifier, timestamp, and optional remarks.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q9:</span> What is the difference between Supabase Service Role key and Anon key?</div>
+          <div class="answer">The <strong>Anon Key</strong> is public and safe to compile in client-side code; it respects RLS rules. The <strong>Service Role Key</strong> is private, bypasses all RLS checks entirely, and must only be stored securely on backend systems (like Edge Functions or secure servers), never in the browser.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q10:</span> How do you secure database credentials in local development vs. production?</div>
+          <div class="answer">We store database URLs and keys inside a <code>.env</code> file, which is added to <code>.gitignore</code> so it is never pushed to GitHub. When deploying to production on Vercel, we add these keys directly into Vercel’s secure Dashboard Environment Variables.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q11:</span> How does the system handle real-time notifications?</div>
+          <div class="answer">Supabase utilizes PostgreSQL’s replication logs to broadcast events. The React client subscribes to these streams via WebSockets (<code>supabase.channel()</code>), listening for database events like inserts on <code>rental_requests</code> to update the Admin Dashboard instantly.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q12:</span> How do you handle email verification?</div>
+          <div class="answer">We integrated the <strong>Resend SMTP</strong> service. When a user registers, Supabase Auth intercepts the action and sends an verification email containing a JWT confirmation token. The user cannot access the client portal until they click the link and change their profile status to verified.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q13:</span> How are database tables optimized for rapid search queries?</div>
+          <div class="answer">We created indexes on foreign key columns (like <code>request_id</code> and <code>user_id</code>) that are frequently scanned during <code>JOIN</code> operations. This prevents slow sequential table scans as our request history table scales.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q14:</span> How does the database prevent bad data from being entered?</div>
+          <div class="answer">We use PostgreSQL check constraints on columns. For instance, the <code>status</code> column in <code>rental_requests</code> has a constraint limiting values to a specific state machine: <code>check (status in ('Pending', 'Under Review', 'Quoted', ...))</code>. Any insert violating this will throw an SQL database error.</div>
+        </div>
+
+        <div class="qa-item">
+          <div class="question"><span class="question-prefix">Q15:</span> Explain how transaction control works in your request form.</div>
+          <div class="answer">When a user submits a form, we need to create a company record, a request record, and multiple item records. If one insert fails, they must all fail to prevent partial data corruption. In Supabase, we achieve this by invoking a single PostgreSQL RPC (stored procedure) function that executes these steps inside a standard SQL <code>BEGIN...COMMIT</code> block.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Chat Prompt -->
+    <div class="card">
+      <h2>5. Study Partner Prompt (Copy for ChatGPT/Claude)</h2>
+      <p>Copy and paste this prompt into another AI tool to practice your backend defense dynamically:</p>
+      
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+        <pre><code id="promptText">Act as a strict technical interviewer conducting a systems review for a college engineering project. I am the Backend Engineer on a team of three. Our project is a "Corporate Bulk Rental Portal" (built using React, Vite, Supabase BaaS, and PostgreSQL).
+
+Ask me questions one at a time. Challenge me on:
+1. Our architecture choice (BaaS Supabase vs traditional Node.js/Spring Boot express servers).
+2. Database Schema design, relational constraints, and table structure choices.
+3. Security architecture (specifically JWT auth, Row Level Security (RLS) policies, and custom SQL functions).
+4. Real-time updates and database triggers.
+5. Code scalability and error-handling strategies.
+
+Start by introducing yourself, and ask the first question. Wait for my reply before asking the next one. Grade my answers strictly and provide constructive critiques.</code></pre>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function copyPrompt() {
+      const text = document.getElementById('promptText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = 'Copied!';
+        setTimeout(() => { btn.innerText = 'Copy Prompt'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

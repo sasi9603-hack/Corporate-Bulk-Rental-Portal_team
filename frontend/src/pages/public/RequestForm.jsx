@@ -118,9 +118,9 @@ export default function RequestForm() {
             customized quotation within <strong>24 hours</strong>.
           </p>
           <div className="bg-slate-50 rounded-xl p-4 mb-6 text-left">
-            <p className="text-sm text-slate-500">Company: <strong className="text-slate-800">{form.company_name}</strong></p>
-            <p className="text-sm text-slate-500 mt-1">Event: <strong className="text-slate-800">{form.event_name}</strong></p>
-            <p className="text-sm text-slate-500 mt-1">Contact: <strong className="text-slate-800">{form.email}</strong></p>
+            <p className="text-sm text-slate-500">Company: <strong className="text-slate-900">{form.company_name}</strong></p>
+            <p className="text-sm text-slate-500 mt-1">Event: <strong className="text-slate-900">{form.event_name}</strong></p>
+            <p className="text-sm text-slate-500 mt-1">Contact: <strong className="text-slate-900">{form.email}</strong></p>
           </div>
 
           {user ? (
@@ -156,7 +156,7 @@ export default function RequestForm() {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-slate-600 hover:text-primary-600 transition-colors text-sm font-medium">
+          <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-primary-600 transition-colors text-sm font-medium">
             <ArrowLeft size={16} /> Back to Home
           </Link>
           <div className="flex items-center gap-3">
@@ -323,13 +323,13 @@ export default function RequestForm() {
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{icon}</span>
                       <div>
-                        <p className="font-semibold text-slate-800 text-sm">{label}</p>
+                        <p className="font-semibold text-slate-900 text-sm">{label}</p>
                         <p className="text-slate-400 text-xs">{desc}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <button onClick={() => update(key, Math.max(0, Number(form[key]) - 1))}
-                        className="w-8 h-8 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center font-bold text-slate-600 transition-colors">
+                        className="w-8 h-8 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center font-bold text-slate-400 transition-colors">
                         −
                       </button>
                       <input
@@ -372,11 +372,11 @@ export default function RequestForm() {
                 <div className="bg-slate-50 rounded-xl p-5">
                   <h3 className="font-bold text-slate-700 text-sm mb-3 uppercase tracking-wider">Company</h3>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div><span className="text-slate-400">Company:</span> <span className="font-medium text-slate-800">{form.company_name}</span></div>
-                    <div><span className="text-slate-400">Contact:</span> <span className="font-medium text-slate-800">{form.contact_person}</span></div>
-                    <div><span className="text-slate-400">Email:</span> <span className="font-medium text-slate-800">{form.email}</span></div>
-                    <div><span className="text-slate-400">Phone:</span> <span className="font-medium text-slate-800">{form.phone}</span></div>
-                    <div className="col-span-2"><span className="text-slate-400">Address:</span> <span className="font-medium text-slate-800">{form.address}</span></div>
+                    <div><span className="text-slate-400">Company:</span> <span className="font-medium text-slate-900">{form.company_name}</span></div>
+                    <div><span className="text-slate-400">Contact:</span> <span className="font-medium text-slate-900">{form.contact_person}</span></div>
+                    <div><span className="text-slate-400">Email:</span> <span className="font-medium text-slate-900">{form.email}</span></div>
+                    <div><span className="text-slate-400">Phone:</span> <span className="font-medium text-slate-900">{form.phone}</span></div>
+                    <div className="col-span-2"><span className="text-slate-400">Address:</span> <span className="font-medium text-slate-900">{form.address}</span></div>
                   </div>
                 </div>
 
@@ -384,11 +384,11 @@ export default function RequestForm() {
                 <div className="bg-slate-50 rounded-xl p-5">
                   <h3 className="font-bold text-slate-700 text-sm mb-3 uppercase tracking-wider">Event</h3>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="col-span-2"><span className="text-slate-400">Event:</span> <span className="font-medium text-slate-800">{form.event_name}</span></div>
-                    <div><span className="text-slate-400">Start:</span> <span className="font-medium text-slate-800">{form.start_date}</span></div>
-                    <div><span className="text-slate-400">End:</span> <span className="font-medium text-slate-800">{form.end_date}</span></div>
-                    <div className="col-span-2"><span className="text-slate-400">Location:</span> <span className="font-medium text-slate-800">{form.delivery_location}</span></div>
-                    {form.notes && <div className="col-span-2"><span className="text-slate-400">Notes:</span> <span className="font-medium text-slate-800">{form.notes}</span></div>}
+                    <div className="col-span-2"><span className="text-slate-400">Event:</span> <span className="font-medium text-slate-900">{form.event_name}</span></div>
+                    <div><span className="text-slate-400">Start:</span> <span className="font-medium text-slate-900">{form.start_date}</span></div>
+                    <div><span className="text-slate-400">End:</span> <span className="font-medium text-slate-900">{form.end_date}</span></div>
+                    <div className="col-span-2"><span className="text-slate-400">Location:</span> <span className="font-medium text-slate-900">{form.delivery_location}</span></div>
+                    {form.notes && <div className="col-span-2"><span className="text-slate-400">Notes:</span> <span className="font-medium text-slate-900">{form.notes}</span></div>}
                   </div>
                 </div>
 
@@ -450,3 +450,4 @@ export default function RequestForm() {
     </div>
   )
 }
+

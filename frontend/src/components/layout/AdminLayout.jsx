@@ -17,7 +17,7 @@ export default function AdminLayout() {
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-50/50 backdrop-blur-sm"
             onClick={() => setSidebarOpen(false)}
           />
           <aside className="absolute left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 shadow-xl animate-in">
@@ -34,7 +34,7 @@ export default function AdminLayout() {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-slate-100 text-slate-600"
+                className="lg:hidden p-2 rounded-lg hover:bg-slate-50 text-slate-400"
               >
                 <Menu size={20} />
               </button>
@@ -49,7 +49,7 @@ export default function AdminLayout() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-lg hover:bg-slate-100 text-slate-500 relative">
+              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-500 relative">
                 <Bell size={18} />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
               </button>
@@ -67,3 +67,4 @@ export default function AdminLayout() {
     </div>
   )
 }
+

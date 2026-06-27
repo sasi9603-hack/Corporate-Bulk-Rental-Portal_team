@@ -137,7 +137,7 @@ export default function Inventory() {
             <div key={cat} className="card p-4 text-center">
               <p className="text-2xl font-extrabold text-slate-900">{total}</p>
               <p className="text-xs text-slate-400 mt-0.5">{cat}s</p>
-              <p className="text-xs text-slate-300">{catDevices.length} models</p>
+              <p className="text-xs text-slate-700">{catDevices.length} models</p>
             </div>
           )
         })}
@@ -158,7 +158,7 @@ export default function Inventory() {
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all border
                   ${catFilter === cat
                     ? 'bg-primary-600 text-white border-primary-600'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-primary-300 hover:text-primary-600'
+                    : 'bg-white text-slate-400 border-slate-200 hover:border-primary-300 hover:text-primary-600'
                   }`}>
                 {cat}
               </button>
@@ -201,10 +201,10 @@ export default function Inventory() {
                       </span>
                     </td>
                     <td className="table-td">
-                      <span className="font-bold text-slate-800">{device.available_quantity}</span>
+                      <span className="font-bold text-slate-900">{device.available_quantity}</span>
                       <span className="text-slate-400 text-xs ml-1">units</span>
                     </td>
-                    <td className="table-td font-semibold text-slate-800">
+                    <td className="table-td font-semibold text-slate-900">
                       ₹{Number(device.daily_price).toLocaleString('en-IN')}/day
                     </td>
                     <td className="table-td">
@@ -299,3 +299,4 @@ export default function Inventory() {
     </div>
   )
 }
+

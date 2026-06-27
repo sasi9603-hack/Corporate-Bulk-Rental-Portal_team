@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import {
-  LayoutDashboard, FileText, Package, Receipt,
-  LogOut, Menu, X, Monitor, ChevronRight, Building2
+  LayoutDashboard, FileText, Package, Receipt, ShieldCheck,
+  LogOut, Menu, X, Monitor, ChevronRight, Building2, DollarSign,
+  Truck, RotateCcw, MessageSquare
 } from 'lucide-react'
 
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/admin/requests', icon: FileText, label: 'Requests' },
+  { to: '/admin/kyc', icon: ShieldCheck, label: 'KYC Verification' },
   { to: '/admin/inventory', icon: Package, label: 'Inventory' },
   { to: '/admin/quotations', icon: Receipt, label: 'Quotations' },
+  { to: '/admin/billing', icon: DollarSign, label: 'Billing & Invoices' },
+  { to: '/admin/support', icon: MessageSquare, label: 'Helpdesk' },
+  { to: '/admin/logistics', icon: Truck, label: 'Logistics' },
+  { to: '/admin/returns', icon: RotateCcw, label: 'Returns' },
 ]
 
 export default function Sidebar({ mobile = false, onClose }) {
@@ -34,7 +40,7 @@ export default function Sidebar({ mobile = false, onClose }) {
           <p className="text-xs text-slate-400">Admin Portal</p>
         </div>
         {mobile && (
-          <button onClick={onClose} className="ml-auto p-1 rounded-lg hover:bg-slate-100 text-slate-500">
+          <button onClick={onClose} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-500">
             <X size={16} />
           </button>
         )}
@@ -68,7 +74,7 @@ export default function Sidebar({ mobile = false, onClose }) {
             </span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-slate-800 truncate">
+            <p className="text-sm font-semibold text-slate-900 truncate">
               {profile?.full_name || 'Admin'}
             </p>
             <p className="text-xs text-slate-400 truncate">{profile?.email}</p>
@@ -87,3 +93,4 @@ export default function Sidebar({ mobile = false, onClose }) {
 
   return content
 }
+

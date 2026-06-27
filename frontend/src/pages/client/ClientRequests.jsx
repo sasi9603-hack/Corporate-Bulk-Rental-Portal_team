@@ -77,7 +77,7 @@ export default function ClientRequests() {
           <LoadingSpinner text="Loading your requests..." />
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
-            <FileText size={40} className="mx-auto mb-4 text-slate-200" />
+            <FileText size={40} className="mx-auto mb-4 text-slate-900" />
             <p className="font-semibold text-slate-500 mb-1">No requests found</p>
             <p className="text-slate-400 text-sm mb-6">
               {requests.length === 0 ? 'Submit your first rental request to get started.' : 'Try adjusting your filters.'}
@@ -88,111 +88,67 @@ export default function ClientRequests() {
               </Link>
             )}
           </div>
-        ) :          <>
-            {/* Desktop Table View */}
-            <div className="hidden md:block overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-slate-50 border-b border-slate-200">
-                  <tr>
-                    <th className="table-th">Event</th>
-                    <th className="table-th">Duration</th>
-                    <th className="table-th">Location</th>
-                    <th className="table-th">Submitted</th>
-                    <th className="table-th">Status</th>
-                    <th className="table-th">Quotation</th>
-                    <th className="table-th">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {filtered.map(req => (
-                    <tr key={req.id} className="table-row">
-                      <td className="table-td">
-                        <div>
-                          <p className="font-semibold text-slate-900">{req.event_name}</p>
-                          <p className="text-xs text-slate-400">{req.companies?.company_name}</p>
-                        </div>
-                      </td>
-                      <td className="table-td text-sm text-slate-600">
-                        <p>{format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')}</p>
-                        <p className="text-xs text-slate-400">to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p>
-                      </td>
-                      <td className="table-td text-slate-500 text-sm max-w-[160px] truncate">
-                        {req.delivery_location}
-                      </td>
-                      <td className="table-td text-xs text-slate-400">
-                        {format(new Date(req.created_at), 'dd MMM yyyy')}
-                      </td>
-                      <td className="table-td">
-                        <StatusBadge status={req.status} />
-                      </td>
-                      <td className="table-td">
-                        {req.quotations?.[0]?.total_amount ? (
-                          <div>
-                            <p className="font-bold text-green-700">
-                              ₹{Number(req.quotations[0].total_amount).toLocaleString('en-IN')}
-                            </p>
-                            <p className="text-xs text-slate-400">{req.quotations[0].status}</p>
-                          </div>
-                        ) : (
-                          <span className="text-xs text-slate-400 italic">Awaiting quote</span>
-                        )}
-                      </td>
-                      <td className="table-td">
-                        <Link to={`/client/requests/${req.id}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
-                                     hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors">
-                          <Eye size={13} /> View
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Card Grid View */}
-            <div className="grid grid-cols-1 gap-4 md:hidden p-4 bg-slate-50/50">
-              {filtered.map(req => (
-                <div key={req.id} className="card p-4 hover:shadow-md transition-shadow">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-bold text-slate-900 text-sm">{req.event_name}</h3>
-                    <StatusBadge status={req.status} />
-                  </div>
-                  
-                  <p className="text-xs text-slate-500 mb-2">Submitted: {format(new Date(req.created_at), 'dd MMM yyyy')}</p>
-                  
-                  <div className="border-t border-slate-100 my-2 pt-2 space-y-1">
-                    <p className="text-xs text-slate-600">
-                      <strong className="text-slate-700">Duration:</strong> {format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')} to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}
-                    </p>
-                    <p className="text-xs text-slate-600 truncate">
-                      <strong className="text-slate-700">Location:</strong> {req.delivery_location}
-                    </p>
-                  </div>
-                  
-                  <div className="flex justify-between items-center mt-3 pt-2 border-t border-slate-100">
-                    <div>
-                      <p className="text-xs text-slate-400">Quotation</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-slate-50 border-b border-slate-200">
+                <tr>
+                  <th className="table-th">Event</th>
+                  <th className="table-th">Duration</th>
+                  <th className="table-th">Location</th>
+                  <th className="table-th">Submitted</th>
+                  <th className="table-th">Status</th>
+                  <th className="table-th">Quotation</th>
+                  <th className="table-th">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {filtered.map(req => (
+                  <tr key={req.id} className="table-row">
+                    <td className="table-td">
+                      <div>
+                        <p className="font-semibold text-slate-900">{req.event_name}</p>
+                        <p className="text-xs text-slate-400">{req.companies?.company_name}</p>
+                      </div>
+                    </td>
+                    <td className="table-td text-sm text-slate-400">
+                      <p>{format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')}</p>
+                      <p className="text-xs text-slate-400">to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p>
+                    </td>
+                    <td className="table-td text-slate-500 text-sm max-w-[160px] truncate">
+                      {req.delivery_location}
+                    </td>
+                    <td className="table-td text-xs text-slate-400">
+                      {format(new Date(req.created_at), 'dd MMM yyyy')}
+                    </td>
+                    <td className="table-td">
+                      <StatusBadge status={req.status} />
+                    </td>
+                    <td className="table-td">
                       {req.quotations?.[0]?.total_amount ? (
                         <div>
-                          <p className="text-sm font-bold text-green-700">
+                          <p className="font-bold text-green-700">
                             ₹{Number(req.quotations[0].total_amount).toLocaleString('en-IN')}
                           </p>
+                          <p className="text-xs text-slate-400">{req.quotations[0].status}</p>
                         </div>
                       ) : (
-                        <p className="text-xs text-slate-400 italic">Awaiting quote</p>
+                        <span className="text-xs text-slate-400 italic">Awaiting quote</span>
                       )}
-                    </div>
-                    <Link to={`/client/requests/${req.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
-                                 hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors">
-                      <Eye size={13} /> View
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>}
+                    </td>
+                    <td className="table-td">
+                      <Link to={`/client/requests/${req.id}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
+                                   hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors">
+                        <Eye size={13} /> View
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
         {filtered.length > 0 && (
           <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
             Showing {filtered.length} of {requests.length} requests
@@ -202,3 +158,4 @@ export default function ClientRequests() {
     </div>
   )
 }
+

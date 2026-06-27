@@ -9,6 +9,7 @@ import {
   TrendingUp, ArrowRight, Activity, Laptop, Monitor
 } from 'lucide-react'
 import { format } from 'date-fns'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null)
@@ -94,7 +95,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <TrendingUp size={18} className="text-primary-600" />
-              <h2 className="font-bold text-slate-800">Recent Requests</h2>
+              <h2 className="font-bold text-slate-900">Recent Requests</h2>
             </div>
             <Link to="/admin/requests" className="text-xs text-primary-600 hover:text-primary-700 font-semibold flex items-center gap-1">
               See all <ArrowRight size={12} />
@@ -136,32 +137,29 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Activity Feed */}
+        {/* Analytics Chart */}
         <div className="card">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-100">
             <Activity size={18} className="text-primary-600" />
-            <h2 className="font-bold text-slate-800">Recent Activity</h2>
+            <h2 className="font-bold text-slate-900">Request Analytics</h2>
           </div>
-          <div className="px-6 py-4 space-y-4 max-h-80 overflow-y-auto">
-            {activity.length === 0 ? (
-              <p className="text-slate-400 text-sm text-center py-8">No activity yet</p>
-            ) : activity.map(item => (
-              <div key={item.id} className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Activity size={13} className="text-primary-600" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm text-slate-700 leading-snug">
-                    <span className="font-medium">{item.rental_requests?.companies?.company_name || 'Request'}</span>
-                    {' → '}
-                    <StatusBadge status={item.new_status} />
-                  </p>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    {format(new Date(item.changed_at), 'dd MMM, hh:mm a')}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="p-4 h-80 flex items-center justify-center">
+            {stats && (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={[
+                  { name: 'Pending', count: stats.pending },
+                  { name: 'Approved', count: stats.approved },
+                  { name: 'Completed', count: stats.completed },
+                ]} margin={{ top: 20, right: 20, bottom: 20, left: -20 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
+                  <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                  <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} maxBarSize={50} />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+            {!stats && <LoadingSpinner text="Loading chart data..." />}
           </div>
         </div>
       </div>
@@ -201,3 +199,4 @@ export default function Dashboard() {
     </div>
   )
 }
+

@@ -21,7 +21,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-50/50 backdrop-blur-sm"
         onClick={onClose}
       />
       {/* Dialog */}
@@ -31,7 +31,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
           <h2 className="text-lg font-bold text-slate-900">{title}</h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-700 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-50 text-slate-500 hover:text-slate-700 transition-colors"
           >
             <X size={18} />
           </button>
@@ -44,3 +44,4 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
     </div>
   )
 }
+

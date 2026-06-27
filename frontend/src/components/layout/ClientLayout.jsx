@@ -3,13 +3,17 @@ import { NavLink, useNavigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import {
   LayoutDashboard, FileText, LogOut, Menu, X,
-  Monitor, ChevronRight, Building2, Bell, PlusCircle
+  Monitor, ChevronRight, Building2, Bell, PlusCircle, DollarSign, ShieldCheck,
+  MessageSquare
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const navItems = [
   { to: '/client/dashboard', icon: LayoutDashboard, label: 'My Dashboard' },
   { to: '/client/requests', icon: FileText, label: 'My Requests' },
+  { to: '/client/kyc', icon: Building2, label: 'KYC Documents' },
+  { to: '/client/billing', icon: DollarSign, label: 'Invoices & Billing' },
+  { to: '/client/support', icon: MessageSquare, label: 'IT Support' },
 ]
 
 export default function ClientLayout() {
@@ -34,7 +38,7 @@ export default function ClientLayout() {
           <p className="text-xs text-slate-400">Client Portal</p>
         </div>
         {mobile && (
-          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-100 text-slate-500">
+          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-500">
             <X size={16} />
           </button>
         )}
@@ -72,7 +76,7 @@ export default function ClientLayout() {
             </span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-slate-800 truncate">{profile?.full_name || 'Client'}</p>
+            <p className="text-sm font-semibold text-slate-900 truncate">{profile?.full_name || 'Client'}</p>
             <p className="text-xs text-slate-400 truncate">{profile?.email}</p>
           </div>
         </div>
@@ -95,7 +99,7 @@ export default function ClientLayout() {
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+          <div className="absolute inset-0 bg-slate-50/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
           <aside className="absolute left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 shadow-xl animate-in">
             <Sidebar mobile />
           </aside>
@@ -109,11 +113,11 @@ export default function ClientLayout() {
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center gap-4">
               <button onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-slate-100 text-slate-600">
+                className="lg:hidden p-2 rounded-lg hover:bg-slate-50 text-slate-400">
                 <Menu size={20} />
               </button>
               <div>
-                <p className="text-sm font-semibold text-slate-800 hidden sm:block">
+                <p className="text-sm font-semibold text-slate-900 hidden sm:block">
                   Welcome back, {profile?.full_name?.split(' ')[0] || 'there'} 👋
                 </p>
               </div>
@@ -123,7 +127,7 @@ export default function ClientLayout() {
                 className="btn-primary btn-sm hidden sm:inline-flex">
                 <PlusCircle size={14} /> New Request
               </Link>
-              <button className="p-2 rounded-lg hover:bg-slate-100 text-slate-500">
+              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-500">
                 <Bell size={18} />
               </button>
             </div>
@@ -140,3 +144,4 @@ export default function ClientLayout() {
     </div>
   )
 }
+

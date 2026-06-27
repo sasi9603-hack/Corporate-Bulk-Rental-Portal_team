@@ -34,8 +34,8 @@ export default function KPICard({ title, value, icon: Icon, color = 'blue', tren
     },
     slate: {
       bg: 'bg-slate-50',
-      icon: 'text-slate-600',
-      iconBg: 'bg-slate-100',
+      icon: 'text-slate-400',
+      iconBg: 'bg-slate-50',
       border: 'border-slate-200',
     },
   }
@@ -62,3 +62,4 @@ export default function KPICard({ title, value, icon: Icon, color = 'blue', tren
     </div>
   )
 }
+

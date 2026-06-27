@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+  <meta charset="utf-8">
+  <title>Backend Study Guide & Interview Prep — Corporate Bulk Rental Portal</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.5;
+      color: #f0fdf4;
+      background-color: #022c22;
+      margin: 1in;
+    }
+    h1 {
+      font-size: 24pt;
+      color: #10b981;
+      border-bottom: 2px solid #10b981;
+      padding-bottom: 6px;
+      margin-bottom: 12pt;
+    }
+    h2 {
+      font-size: 16pt;
+      color: #10b981;
+      margin-top: 24pt;
+      margin-bottom: 12pt;
+      border-bottom: 1px solid #0f3f35;
+      padding-bottom: 4px;
+    }
+    p {
+      font-size: 11pt;
+      margin-bottom: 10pt;
+    }
+    strong {
+      color: #111827;
+      font-weight: bold;
+    }
+    ul, ol {
+      margin-bottom: 10pt;
+      padding-left: 20pt;
+    }
+    li {
+      font-size: 11pt;
+      margin-bottom: 4pt;
+    }
+    .callout {
+      background-color: #f5f3ff;
+      border-left: 4px solid #6366f1;
+      padding: 10pt 12pt;
+      margin: 12pt 0;
+    }
+    .callout.important {
+      background-color: #fffbeb;
+      border-left: 4px solid #d97706;
+    }
+    .callout-title {
+      font-weight: bold;
+      color: #1e1b4b;
+      margin-bottom: 4pt;
+    }
+    pre, .diagram {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10pt;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 9.5pt;
+      margin: 12pt 0;
+      white-space: pre;
+    }
+    .qa-item {
+      margin-bottom: 16pt;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 12pt;
+    }
+    .question {
+      font-size: 12pt;
+      font-weight: bold;
+      color: #1e1b4b;
+      margin-bottom: 6pt;
+    }
+    .answer {
+      font-size: 11pt;
+      color: #475569;
+      margin-left: 12pt;
+    }
+    .prompt-box {
+      border: 2px dashed #06b6d4;
+      background-color: #ecfeff;
+      padding: 12pt;
+      margin-top: 16pt;
+    }
+    .badge {
+      font-size: 9pt;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #4f46e5;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="badge">Backend Engineering</div>
+  <h1>Review 2 Study Guide</h1>
+  <p><strong>Project:</strong> Corporate Bulk Rental Portal — System Analysis, Database Design & Security</p>
+  <p><strong>Company:</strong> One Point Solutions</p>
+
+  <h2>1. Architecture & Technology Stack</h2>
+  <p>Our project uses a modern <strong>Serverless / BaaS (Backend-as-a-Service)</strong> architecture. Instead of hosting and writing a traditional custom backend server (e.g., using Node.js/Express, Java Spring Boot, or Python Django), we leverage Supabase to handle our API, authentication, and database operations. The React frontend uses the Supabase Client SDK to query data directly using JSON Web Tokens (JWT) in the request headers.</p>
+  
+  <div class="diagram">
+[ React Client (Vite + Tailwind) ]
+                |
+                | Secure REST/Websocket Queries (JWT Auth Headers)
+                ▼
+[ Supabase BaaS Gateway (Auto-generated APIs) ]
+      ├── JWT Authentication & Verification
+      ├── PostgreSQL Database Management
+      └── RLS (Row-Level Security) Query Filter
+                |
+                ▼
+[ PostgreSQL Database (7 Relational Tables) ]
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">💡 Why BaaS & Supabase?</div>
+    <ul>
+      <li><strong>Instant APIs:</strong> Supabase exposes endpoints directly for every SQL table we create, removing the need to write redundant controller routes.</li>
+      <li><strong>Database-level Security:</strong> Standard servers use middleware. We write security rules directly inside PostgreSQL using Row Level Security (RLS).</li>
+      <li><strong>PostgreSQL Engine:</strong> Provides relational schemas, constraints, triggers, and transactions.</li>
+    </ul>
+  </div>
+
+  <h2>2. Database Design & Schema</h2>
+  <p>Our database contains 7 tables structured in a relational database layout to support the bulk booking process:</p>
+  
+  <ul>
+    <li><strong>profiles:</strong> Extends Supabase auth details. Columns: <code>id (UUID, PK references auth.users)</code>, <code>email (text)</code>, <code>full_name (text)</code>, <code>role (text: 'admin' or 'client')</code>.</li>
+    <li><strong>companies:</strong> Captures B2B details. Columns: <code>id (UUID, PK)</code>, <code>company_name</code>, <code>contact_person</code>, <code>email</code>, <code>phone</code>, <code>address</code>.</li>
+    <li><strong>devices:</strong> The rental inventory. Columns: <code>id (UUID, PK)</code>, <code>name</code>, <code>category (Laptop, Desktop, Monitor, Projector, Printer)</code>, <code>available_quantity</code>, <code>daily_price</code>.</li>
+    <li><strong>rental_requests:</strong> Bookings submitted by clients. Columns: <code>id (UUID, PK)</code>, <code>company_id (FK -> companies)</code>, <code>user_id (FK -> auth.users)</code>, <code>event_name</code>, <code>start_date</code>, <code>end_date</code>, <code>delivery_location</code>, <code>status (Pending, Under Review, Quoted, Approved, Allocated, Delivered, Completed, Rejected)</code>.</li>
+    <li><strong>request_items:</strong> Junction table mapping requests to requested devices. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK)</code>, <code>device_id (FK)</code>, <code>quantity (integer)</code>.</li>
+    <li><strong>quotations:</strong> Billing details per request. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK, Unique)</code>, <code>total_amount (numeric)</code>, <code>quotation_notes (text)</code>, <code>status (Draft, Sent, Approved, Rejected)</code>.</li>
+    <li><strong>status_history:</strong> State-machine log auditing transitions. Columns: <code>id (UUID, PK)</code>, <code>request_id (FK)</code>, <code>old_status</code>, <code>new_status</code>, <code>changed_by (FK)</code>, <code>admin_note</code>, <code>changed_at</code>.</li>
+  </ul>
+
+  <div class="callout important">
+    <div class="callout-title">⚠️ Integrity & Constraints</div>
+    <p>We use <strong>Foreign Key Constraints</strong> with <code>ON DELETE CASCADE</code> to prevent orphan rows. For example, deleting a rental request cascades deletions down to its child records in <code>request_items</code> and <code>quotations</code> automatically.</p>
+  </div>
+
+  <h2>3. Row Level Security (RLS) & Security Policies</h2>
+  <p>Every table in our database has Row Level Security enabled. RLS ensures that unless an explicit policy grants access, queries will return empty rows.</p>
+  
+  <p>Supabase verifies client requests via <strong>JWT (JSON Web Tokens)</strong>. The database extracts the client ID using the function <code>auth.uid()</code> and checks the access policies.</p>
+
+  <pre><code>-- Example RLS Policy
+CREATE POLICY "Clients can view own requests" ON rental_requests
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Custom Authorization Checker
+CREATE OR REPLACE FUNCTION is_admin()
+RETURNS BOOLEAN LANGUAGE sql SECURITY DEFINER AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE id = auth.uid() AND role = 'admin'
+  );
+$$;</code></pre>
+
+  <h2>4. Mock Interview Q&As (15 Questions)</h2>
+  
+  <div class="qa-item">
+    <div class="question">Q1: Which database did you use, and why?</div>
+    <div class="answer">We used <strong>PostgreSQL</strong> hosted on Supabase. PostgreSQL is an enterprise-grade relational database. It is ideal for transactional business portals because it enforces strict schemas, referential integrity (foreign keys), and secure transactions, preventing issues like orphan rows or double bookings.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q2: How does your frontend talk to the database without a custom server?</div>
+    <div class="answer">We use Supabase as our Backend-as-a-Service (BaaS). Supabase automatically generates RESTful APIs directly from our PostgreSQL database tables. Our React client imports the <code>@supabase/supabase-js</code> SDK and queries the database directly via HTTPS calls, eliminating server-side routing boilerplate.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q3: Explain how Row Level Security (RLS) protects client data.</div>
+    <div class="answer">RLS is a PostgreSQL security feature. Every time a client queries a table, the database checks defined RLS policies. It verifies the client’s identity using the JWT sent in the authorization header and extracts their user ID using <code>auth.uid()</code>. The policy restricts the query to return only rows matching that ID, e.g., <code>auth.uid() = user_id</code>.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q4: How does client user registration work? How is their profile created?</div>
+    <div class="answer">When a user signs up via Supabase Auth, their email and password are saved in Supabase’s internal <code>auth.users</code> table. We set up a PostgreSQL <strong>Database Trigger</strong> (<code>on_auth_user_created</code>) that automatically executes a function. This function inserts a matching row into our public <code>profiles</code> table, mapping their metadata and assigning a default role of <code>'client'</code>.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q5: How do you handle role authorization (Admins vs. Clients)?</div>
+    <div class="answer">We use Role-Based Access Control (RBAC). The <code>profiles</code> table has a <code>role</code> column (<code>'admin'</code> or <code>'client'</code>). On the database level, RLS policies use a custom function <code>is_admin()</code> to check this role and restrict modifications (like adding inventory or quotations). On the frontend, React uses route guards to check the role in <code>AuthContext</code> and redirect clients away from admin pages.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q6: How is the rental request quotation calculated and exported?</div>
+    <div class="answer">The quotation total is calculated dynamically: <code>daily_device_rate * quantity * event_duration_days</code>. Once approved, the admin inputs this total, and we use the client-side library <strong>jsPDF</strong> to generate a formatted PDF invoice displaying order details and company branding, downloading it directly via the browser.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q7: What happens to related records when a request is deleted?</div>
+    <div class="answer">We use foreign key constraints configured with <code>ON DELETE CASCADE</code>. For example, <code>request_items</code> and <code>quotations</code> have foreign keys referencing the <code>rental_requests</code> table. If an admin deletes a request, PostgreSQL automatically removes all associated items and quotes, protecting data consistency.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q8: How do you audit status changes for the rental request workflow?</div>
+    <div class="answer">We created a <code>status_history</code> table that functions as an audit log. Every time a request status updates (e.g., from <code>Pending</code> to <code>Under Review</code> to <code>Quoted</code>), the update trigger or transaction inserts a row documenting the old state, new state, user ID of the modifier, timestamp, and optional remarks.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q9: What is the difference between Supabase Service Role key and Anon key?</div>
+    <div class="answer">The <strong>Anon Key</strong> is public and safe to compile in client-side code; it respects RLS rules. The <strong>Service Role Key</strong> is private, bypasses all RLS checks entirely, and must only be stored securely on backend systems (like Edge Functions or secure servers), never in the browser.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q10: How do you secure database credentials in local development vs. production?</div>
+    <div class="answer">We store database URLs and keys inside a <code>.env</code> file, which is added to <code>.gitignore</code> so it is never pushed to GitHub. When deploying to production on Vercel, we add these keys directly into Vercel’s secure Dashboard Environment Variables.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q11: How does the system handle real-time notifications?</div>
+    <div class="answer">Supabase utilizes PostgreSQL’s replication logs to broadcast events. The React client subscribes to these streams via WebSockets (<code>supabase.channel()</code>), listening for database events like inserts on <code>rental_requests</code> to update the Admin Dashboard instantly.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q12: How do you handle email verification?</div>
+    <div class="answer">We integrated the <strong>Resend SMTP</strong> service. When a user registers, Supabase Auth intercepts the action and sends an verification email containing a JWT confirmation token. The user cannot access the client portal until they click the link and change their profile status to verified.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q13: How are database tables optimized for rapid search queries?</div>
+    <div class="answer">We created indexes on foreign key columns (like <code>request_id</code> and <code>user_id</code>) that are frequently scanned during <code>JOIN</code> operations. This prevents slow sequential table scans as our request history table scales.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q14: How does the database prevent bad data from being entered?</div>
+    <div class="answer">We use PostgreSQL check constraints on columns. For instance, the <code>status</code> column in <code>rental_requests</code> has a constraint limiting values to a specific state machine: <code>check (status in ('Pending', 'Under Review', 'Quoted', ...))</code>. Any insert violating this will throw an SQL database error.</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="question">Q15: Explain how transaction control works in your request form.</div>
+    <div class="answer">When a user submits a form, we need to create a company record, a request record, and multiple item records. If one insert fails, they must all fail to prevent partial data corruption. In Supabase, we achieve this by invoking a single PostgreSQL RPC (stored procedure) function that executes these steps inside a standard SQL <code>BEGIN...COMMIT</code> block.</div>
+  </div>
+
+  <h2>5. Study Partner Prompt (Copy for ChatGPT/Claude)</h2>
+  <div class="prompt-box">
+    <p><strong>Copy and paste this prompt into another AI tool to practice your backend defense dynamically:</strong></p>
+    <pre>Act as a strict technical interviewer conducting a systems review for a college engineering project. I am the Backend Engineer on a team of three. Our project is a "Corporate Bulk Rental Portal" (built using React, Vite, Supabase BaaS, and PostgreSQL).
+
+Ask me questions one at a time. Challenge me on:
+1. Our architecture choice (BaaS Supabase vs traditional Node.js/Spring Boot express servers).
+2. Database Schema design, relational constraints, and table structure choices.
+3. Security architecture (specifically JWT auth, Row Level Security (RLS) policies, and custom SQL functions).
+4. Real-time updates and database triggers.
+5. Code scalability and error-handling strategies.
+
+Start by introducing yourself, and ask the first question. Wait for my reply before asking the next one. Grade my answers strictly and provide constructive critiques.</pre>
+  </div>
+
+</body>
+</html>

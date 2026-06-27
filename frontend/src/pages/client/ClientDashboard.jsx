@@ -66,7 +66,7 @@ export default function ClientDashboard() {
           <div className="w-20 h-20 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-5">
             <PlusCircle size={36} className="text-primary-400" />
           </div>
-          <h2 className="text-xl font-bold text-slate-800 mb-2">No Requests Yet</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-2">No Requests Yet</h2>
           <p className="text-slate-400 mb-6 max-w-sm mx-auto">
             Submit your first bulk rental request and we'll get back to you with a custom quotation within 24 hours.
           </p>
@@ -81,7 +81,7 @@ export default function ClientDashboard() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <FileText size={18} className="text-primary-600" />
-                <h2 className="font-bold text-slate-800">Recent Requests</h2>
+                <h2 className="font-bold text-slate-900">Recent Requests</h2>
               </div>
               <Link to="/client/requests" className="text-xs text-primary-600 font-semibold flex items-center gap-1 hover:text-primary-700">
                 See all <ArrowRight size={12} />
@@ -112,10 +112,10 @@ export default function ClientDashboard() {
                       <td className="table-td">
                         <StatusBadge status={req.status} />
                       </td>
-                      <td className="table-td font-semibold text-slate-800">
+                      <td className="table-td font-semibold text-slate-900">
                         {req.quotations?.[0]?.total_amount
                           ? <span className="text-green-700">₹{Number(req.quotations[0].total_amount).toLocaleString('en-IN')}</span>
-                          : <span className="text-slate-300 font-normal text-xs">Pending</span>}
+                          : <span className="text-slate-700 font-normal text-xs">Pending</span>}
                       </td>
                     </tr>
                   ))}
@@ -128,7 +128,7 @@ export default function ClientDashboard() {
           <div className="card p-6">
             <div className="flex items-center gap-2 mb-5">
               <Activity size={18} className="text-primary-600" />
-              <h2 className="font-bold text-slate-800">Request Status</h2>
+              <h2 className="font-bold text-slate-900">Request Status</h2>
             </div>
             <div className="space-y-3">
               {[
@@ -143,8 +143,8 @@ export default function ClientDashboard() {
               ].filter(s => s.count > 0).map(({ label, count, color }) => (
                 <div key={label} className="flex items-center gap-3">
                   <div className={`w-2 h-2 rounded-full ${color} flex-shrink-0`} />
-                  <span className="text-sm text-slate-600 flex-1">{label}</span>
-                  <span className="font-bold text-slate-800 text-sm">{count}</span>
+                  <span className="text-sm text-slate-400 flex-1">{label}</span>
+                  <span className="font-bold text-slate-900 text-sm">{count}</span>
                 </div>
               ))}
 
@@ -186,3 +186,4 @@ export default function ClientDashboard() {
     </div>
   )
 }
+

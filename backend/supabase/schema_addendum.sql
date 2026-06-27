@@ -60,3 +60,9 @@ create policy "Clients can view own company" on companies
       and rental_requests.user_id = auth.uid()
     )
   );
+
+-- Admins can delete requests
+drop policy if exists "Admins can delete requests" on rental_requests;
+create policy "Admins can delete requests" on rental_requests
+  for delete using (is_admin());
+

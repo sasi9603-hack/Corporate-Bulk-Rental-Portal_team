@@ -206,7 +206,7 @@ export default function Quotations() {
       {/* Summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: 'Total', count: quotations.length, color: 'text-slate-800', bg: 'bg-slate-50' },
+          { label: 'Total', count: quotations.length, color: 'text-slate-900', bg: 'bg-slate-50' },
           { label: 'Sent', count: quotations.filter(q => q.status === 'Sent').length, color: 'text-blue-700', bg: 'bg-blue-50' },
           { label: 'Approved', count: quotations.filter(q => q.status === 'Approved').length, color: 'text-green-700', bg: 'bg-green-50' },
           { label: 'Rejected', count: quotations.filter(q => q.status === 'Rejected').length, color: 'text-red-700', bg: 'bg-red-50' },
@@ -259,7 +259,7 @@ export default function Quotations() {
                 {filtered.map(q => (
                   <tr key={q.id} className="table-row">
                     <td className="table-td">
-                      <code className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">
+                      <code className="text-xs bg-slate-50 text-slate-400 px-2 py-1 rounded font-mono">
                         QUO-{q.id.slice(0, 8).toUpperCase()}
                       </code>
                     </td>
@@ -364,3 +364,4 @@ export default function Quotations() {
     </div>
   )
 }
+

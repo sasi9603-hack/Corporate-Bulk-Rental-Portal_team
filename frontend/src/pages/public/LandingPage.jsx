@@ -51,18 +51,18 @@ export default function LandingPage() {
           <nav className="hidden md:flex items-center gap-8">
             {['Services', 'How It Works', 'About', 'Contact'].map(item => (
               <a key={item} href={`#${item.toLowerCase().replace(/ /g, '-')}`}
-                className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">
+                className="text-sm font-medium text-slate-400 hover:text-primary-600 transition-colors">
                 {item}
               </a>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/login" className="btn-secondary btn-sm">Admin Login</Link>
+            <Link to="/login" className="btn-secondary btn-sm">Login</Link>
             <Link to="/request" className="btn-primary btn-sm">Get a Quote</Link>
           </div>
 
-          <button className="md:hidden p-2 rounded-lg text-slate-600" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="md:hidden p-2 rounded-lg text-slate-400" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -71,7 +71,7 @@ export default function LandingPage() {
           <div className="md:hidden bg-white border-t border-slate-100 px-6 py-4 flex flex-col gap-4">
             {['Services', 'How It Works', 'About', 'Contact'].map(item => (
               <a key={item} href={`#${item.toLowerCase().replace(/ /g, '-')}`}
-                className="text-sm font-medium text-slate-600" onClick={() => setMenuOpen(false)}>
+                className="text-sm font-medium text-slate-400" onClick={() => setMenuOpen(false)}>
                 {item}
               </a>
             ))}
@@ -269,7 +269,7 @@ export default function LandingPage() {
           <p className="text-slate-400 text-sm font-medium mb-8 uppercase tracking-wider">Trusted by India's Leading Companies</p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {clients.map(c => (
-              <span key={c} className="text-2xl font-extrabold text-slate-300 hover:text-slate-400 transition-colors cursor-default">{c}</span>
+              <span key={c} className="text-2xl font-extrabold text-slate-700 hover:text-slate-400 transition-colors cursor-default">{c}</span>
             ))}
           </div>
         </div>
@@ -314,7 +314,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12">
+      <footer className="bg-slate-50 text-white py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2.5">
@@ -327,7 +327,7 @@ export default function LandingPage() {
               © {new Date().getFullYear()} CorpRentalPro. All rights reserved. Built for corporate excellence.
             </p>
             <div className="flex items-center gap-4">
-              <Link to="/login" className="text-slate-400 hover:text-white text-sm transition-colors">Admin Login</Link>
+              <Link to="/login" className="text-slate-400 hover:text-white text-sm transition-colors">Login</Link>
               <Link to="/request" className="text-slate-400 hover:text-white text-sm transition-colors">Get a Quote</Link>
             </div>
           </div>
@@ -336,3 +336,4 @@ export default function LandingPage() {
     </div>
   )
 }
+
