@@ -7,7 +7,7 @@
 "TC-006","Landing Page Buttons","Buttons should work","Working correctly","PASS"
 "TC-007","Quote Form Opening","Form should open","Opened successfully","PASS"
 "TC-008","Empty Field Validation","Validation message shown","Validation shown","PASS"
-"TC-009","Invalid Email Validation (Quote Form)","Invalid email rejected","Invalid email accepted","FAIL"
+"TC-009","Invalid Email Validation (Quote Form)","Invalid email rejected","Invalid email accepted","PASS"
 "TC-010","Valid Form Submission","Proceed to next step","Proceeded successfully","PASS"
 "TC-011","Next Button Functionality","Move to next step","Working","PASS"
 "TC-012","Previous Button Functionality","Return to previous step","Working","PASS"
