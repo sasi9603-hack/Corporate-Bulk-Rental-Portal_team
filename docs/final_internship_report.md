@@ -25,12 +25,16 @@
                              ONE POINT SOLUTIONS
 
                                  Submitted by:
+                            Kasanagottu Praharsha
+                    Role: student 1 - Frontend Developer
+                                    Prem Sai
+                    Role: Student 2 - Backend developer
                              V. SASIDHAR REDDY
                    Role: Student 3 – Testing & Deployment
                     
                             Academic Year: 2025 - 2026
                             Duration: June 1, 2026 - June 30, 2026
-                            Submission Date: June 18, 2026
+                            Submission Date: June 27, 2026
                             
 ================================================================================
 ```
